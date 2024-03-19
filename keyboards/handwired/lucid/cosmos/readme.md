@@ -1,6 +1,6 @@
 # cosmos
 
-![cosmos](imgur.com image replace me!)
+![cosmos]([imgur.com image replace me!](https://imgur.com/R5yrvIT))
 
 *A short description of the keyboard/project*
 
