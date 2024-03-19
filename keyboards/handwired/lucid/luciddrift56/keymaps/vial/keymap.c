@@ -9,6 +9,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 #endif
 
+
 /**
 * Put this somewhere at the beginning of the file --
 * Make sure you import only one of animations at a time
@@ -21,7 +22,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 #define FAST_TYPE_WPM 45 //Switch to fast animation when over words per minute
 
 #ifdef OLED_ENABLE
-#include "demon.c"
+#include "crab.c"
 #endif
 
 // -- Probably some other stuff and then --
@@ -34,6 +35,9 @@ bool oled_task_user(void) {
   return false;
 }
 #endif
+
+
+
 
 
 // Defines names for use in layer keycodes and the keymap
@@ -111,27 +115,4 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [_RAISE] =  { ENCODER_CCW_CW(RGB_VAD, RGB_VAI),           ENCODER_CCW_CW(RGB_SPD, RGB_SPI)  },
     [_ADJUST] = { ENCODER_CCW_CW(RGB_RMOD, RGB_MOD),          ENCODER_CCW_CW(KC_RIGHT, KC_LEFT) },
 };
-#endif
-#ifdef OLED_ENABLE
-
-// Draw to OLED
-bool oled_task_user() {
-    // Set cursor
-    oled_set_cursor(0, 1);
-
-    // Switch on current active layer
-    switch (get_highest_layer(layer_state)) {
-        case _BASE :
-            oled_write("Main Layer", false);
-            break;
-        case _RAISE :
-            oled_write("Code Layer", false);
-            break;
-        case _LOWER :
-            oled_write("Function Layer", false);
-            break;
-    }
-    return false;
-}
-
 #endif

@@ -6,7 +6,7 @@
 #define ENCODERS_PAD_A { GP26 }
 #define ENCODERS_PAD_B { GP27 }
 #define ENCODER_RESOLUTION 4
-
+#define SPLIT_WPM_ENABLE
 // Vial
 #define VIAL_KEYBOARD_UID {0xBA, 0x0E, 0x55, 0x0B, 0xF6, 0xD5, 0xDF, 0xBB}
 #define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }

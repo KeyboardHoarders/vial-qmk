@@ -6,11 +6,13 @@
 #define ENCODERS_PAD_A { GP27 }
 #define ENCODERS_PAD_B { GP26 }
 #define ENCODER_RESOLUTION 4
+#define VIAL_KEYBOARD_UID {0xAA, 0x47, 0x08, 0x92, 0xFB, 0x7B, 0x70, 0x3D}
+#define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 1 }
 
-#define VIAL_KEYBOARD_UID {0xC0, 0x56, 0xE5, 0xD1, 0x39, 0x63, 0x57, 0x85}
-#define VIAL_UNLOCK_COMBO_ROWS { 0,0 }
-#define VIAL_UNLOCK_COMBO_COLS { 0,1 }
-#define DIP_SWITCH_PINS { GP28 }
+
+
+
 
 #define MASTER_LEFT
 

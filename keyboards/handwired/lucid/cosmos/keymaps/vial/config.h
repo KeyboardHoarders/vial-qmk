@@ -3,17 +3,12 @@
 
 #pragma once
 
-#define ENCODERS_PAD_A { GP27 }
-#define ENCODERS_PAD_B { GP26 }
-#define ENCODER_RESOLUTION 4
-
-#define VIAL_KEYBOARD_UID {0xC0, 0x56, 0xE5, 0xD1, 0x39, 0x63, 0x57, 0x85}
-#define VIAL_UNLOCK_COMBO_ROWS { 0,0 }
-#define VIAL_UNLOCK_COMBO_COLS { 0,1 }
-#define DIP_SWITCH_PINS { GP28 }
-
 #define MASTER_LEFT
+#define SPLIT_WPM_ENABLE
 
+#define VIAL_UNLOCK_COMBO_ROWS { 0, 0 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 1 }
+#define VIAL_KEYBOARD_UID {0xF6, 0xD1, 0x4B, 0xE2, 0x9B, 0xB6, 0x01, 0x22}
 
 /*
  * Feature disable options

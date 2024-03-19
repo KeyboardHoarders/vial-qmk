@@ -8,9 +8,15 @@
 #define VIAL_UNLOCK_COMBO_ROWS { 0,0 }
 #define VIAL_UNLOCK_COMBO_COLS { 0,1 }
 
-#define ENCODERS_PAD_A { B2 }
-#define ENCODERS_PAD_B { B3 }
-#define ENCODER_RESOLUTION 4
+#ifdef POINTING_DEVICE_ENABLE
+    #define ANALOG_JOYSTICK_X_AXIS_PIN B4
+    #define ANALOG_JOYSTICK_Y_AXIS_PIN B5
+    #define ANALOG_JOYSTICK_AXIS_MIN 0
+    #define ANALOG_JOYSTICK_AXIX_MAX 1023
+    #define ANALOG_JOYSTICK_SPEED_REGULATOR 40
+    #define ANALOG_JOYSTICK_READ_INTERVAL 10
+    #define ANALOG_JOYSTICK_SPEED_MAX 2
+#endif
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
