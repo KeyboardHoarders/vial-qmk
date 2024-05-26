@@ -1,0 +1,95 @@
+{
+    "manufacturer": "slingthat",
+    "keyboard_name": "klorsling",
+    "maintainer": "slingthat",
+    "bootloader": "rp2040",
+    "diode_direction": "COL2ROW",
+    "features": {
+        "bootmagic": true,
+        "command": false,
+        "console": false,
+        "extrakey": true,
+        "mousekey": true,
+        "nkro": true
+    },
+    "split": {
+        "enabled": true,
+        "soft_serial_pin": "GP1"
+    },
+    "rgb_matrix": {
+        "driver": "ws2812"
+    },
+    "ws2812": {
+        "pin": "GP0"
+    },
+    "matrix_pins": {
+        "cols": ["GP27", "GP26", "GP22", "GP20", "GP23", "GP21"],
+        "rows": ["GP5", "GP6", "GP7", "GP8"]
+    },
+    "processor": "RP2040",
+    "url": "",
+    "usb": {
+        "device_version": "1.0.0",
+        "pid": "0x0000",
+        "vid": "0xFEED"
+    },
+    "layouts": {
+        "LAYOUT_polydactyl": {
+            "layout": [
+
+                {"matrix": [0, 1], "x": 1, "y": 1.4},
+                {"matrix": [0, 2], "x": 2, "y": 0.75},
+                {"matrix": [0, 3], "x": 3, "y": 0.25},
+                {"matrix": [0, 4], "x": 4, "y": 0.75},
+                {"matrix": [0, 5], "x": 5, "y": 1},
+                
+                {"matrix": [4, 5], "x": 11, "y": 1},
+                {"matrix": [4, 4], "x": 12, "y": 0.75},
+                {"matrix": [4, 3], "x": 13, "y": 0.25},
+                {"matrix": [4, 2], "x": 14, "y": 0.75},
+                {"matrix": [4, 1], "x": 15, "y": 1.4},
+
+                
+                {"matrix": [1, 0], "x": 0, "y": 2.2},
+                {"matrix": [1, 1], "x": 1, "y": 2.4},
+                {"matrix": [1, 2], "x": 2, "y": 1.75},
+                {"matrix": [1, 3], "x": 3, "y": 1.25},
+                {"matrix": [1, 4], "x": 4, "y": 1.75},
+                {"matrix": [1, 5], "x": 5, "y": 2},
+
+                {"matrix": [5, 5], "x": 11, "y": 2},
+                {"matrix": [5, 4], "x": 12, "y": 1.75},
+                {"matrix": [5, 3], "x": 13, "y": 1.25},
+                {"matrix": [5, 2], "x": 14, "y": 1.75},
+                {"matrix": [5, 1], "x": 15, "y": 2.4},
+                {"matrix": [5, 0], "x": 16, "y": 2.2},
+
+                {"matrix": [2, 0], "x": 0, "y": 3.2},
+                {"matrix": [2, 1], "x": 1, "y": 3.4},
+                {"matrix": [2, 2], "x": 2, "y": 2.75},
+                {"matrix": [2, 3], "x": 3, "y": 2.25},
+                {"matrix": [2, 4], "x": 4, "y": 2.75},
+                {"matrix": [2, 5], "x": 5, "y": 3},
+
+                {"matrix": [6, 5], "x": 11, "y": 3},
+                {"matrix": [6, 4], "x": 12, "y": 2.75},
+                {"matrix": [6, 3], "x": 13, "y": 2.25},
+                {"matrix": [6, 2], "x": 14, "y": 2.75},
+                {"matrix": [6, 1], "x": 15, "y": 3.4},
+                {"matrix": [6, 0], "x": 16, "y": 3.2},
+
+                {"matrix": [3, 1], "x": 3.5, "y": 3.9},
+                {"matrix": [3, 2], "x": 3.5, "y": 3.9},
+                {"matrix": [3, 3], "x": 3.5, "y": 3.9},
+                {"matrix": [3, 4], "x": 3.5, "y": 3.9},
+                {"matrix": [3, 5], "x": 6.25, "y": 3.25},
+
+                {"matrix": [7, 5], "x": 9.75, "y": 3.25},
+                {"matrix": [7, 4], "x": 12.5, "y": 3.9},
+                {"matrix": [7, 3], "x": 12.5, "y": 3.9},
+                {"matrix": [7, 2], "x": 12.5, "y": 3.9},
+                {"matrix": [7, 1], "x": 12.5, "y": 3.9}
+            ]
+        }
+    }
+}
