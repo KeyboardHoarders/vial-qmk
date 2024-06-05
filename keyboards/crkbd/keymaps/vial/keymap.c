@@ -193,15 +193,14 @@ static void render_my_logo(void) {
 
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
-        render_my_logo();
-    } else {
         oled_render_layer_state();
         oled_render_keylog();
+    } else {
+
+        render_my_logo();
     }
     return false;
 }
-
-
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
