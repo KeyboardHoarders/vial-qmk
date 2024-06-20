@@ -1,10 +1,7 @@
 OLED_ENABLE = yes
-ENCODER_ENABLE = yes
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
-ENCODER_MAP_ENABLE = yes
 BACKLIGHT_ENABLE = no
 RGBLIGHT_ENABLE = no
 VIALRGB_ENABLE = yes
 RGB_MATRIX_ENABLE = yes
-WPM_ENABLE = yes  # Enable word per minute counter

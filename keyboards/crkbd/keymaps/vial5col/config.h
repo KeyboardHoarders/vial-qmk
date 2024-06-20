@@ -18,9 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define VIAL_KEYBOARD_UID {0x3B, 0x6B, 0xA0, 0x29, 0x80, 0x56, 0xED, 0xD1}
-#define VIAL_UNLOCK_COMBO_ROWS {0, 0}
-#define VIAL_UNLOCK_COMBO_COLS {0, 1}
+#define VIAL_KEYBOARD_UID {0xE0, 0x25, 0xE6, 0x0C, 0xB4, 0x69, 0xCF, 0x66}
+#define VIAL_UNLOCK_COMBO_ROWS {0, 1}
+#define VIAL_UNLOCK_COMBO_COLS {0, 2}
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 4
 #define TAPPING_TERM 180
@@ -85,6 +85,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 //#define USE_SERIAL_PD2
-
+#ifdef RGBLIGHT_ENABLE
+#    undef RGBLIGHT_LED_COUNT
+#    define RGBLIGHT_ANIMATIONS
+#    define RGBLIGHT_LED_COUNT 54
+#    undef RGBLED_SPLIT
+#    define RGBLED_SPLIT \
+        { 27, 27 }
+#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 180
+#    define RGBLIGHT_LIMIT_VAL 120
+#    define RGBLIGHT_HUE_STEP  10
+#    define RGBLIGHT_SAT_STEP  17
+#    define RGBLIGHT_VAL_STEP  17
+#endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
