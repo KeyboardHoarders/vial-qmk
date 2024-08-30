@@ -7,4 +7,5 @@ BACKLIGHT_ENABLE = no
 RGBLIGHT_ENABLE = no
 VIALRGB_ENABLE = yes
 RGB_MATRIX_ENABLE = yes
+WPM_ENABLE = yes  # Enable word per minute counter
 DYNAMIC_MACRO_ENABLE = yes

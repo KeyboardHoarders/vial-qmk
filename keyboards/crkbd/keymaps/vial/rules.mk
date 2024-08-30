@@ -7,3 +7,4 @@ OLED_ENABLE         = yes
 OLED_DRIVER         = ssd1306
 EXTRAKEY_ENABLE     = yes
 VIALRGB_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = yes

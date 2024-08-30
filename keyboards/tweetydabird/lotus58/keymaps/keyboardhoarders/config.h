@@ -1,48 +1,35 @@
-/*
-Copyright 2019 @foostan
-Copyright 2020 Drashna Jaelre <@drashna>
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+// Copyright 2022 Markus Knutsson (@TweetyDaBird)
+// SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
 
-#define VIAL_KEYBOARD_UID {0x3B, 0x6B, 0xA0, 0x29, 0x80, 0x56, 0xED, 0xD1}
+#define VIAL_KEYBOARD_UID {0x5F, 0xEC, 0xD8, 0x46, 0x91, 0x40, 0x1B, 0x09}
+#define SPLIT_USB_DETECT
+#define SPLIT_USB_TIMEOUT 2000
+
+
 #define VIAL_UNLOCK_COMBO_ROWS {0, 0}
-#define VIAL_UNLOCK_COMBO_COLS {0, 1}
+#define VIAL_UNLOCK_COMBO_COLS {0, 5}
 
-#define DYNAMIC_KEYMAP_LAYER_COUNT 4
-#define TAPPING_TERM 180
+// Static glow is ALWAYS on with RGBLIGHT
+#define RGBLIGHT_EFFECT_BREATHING
+#define RGBLIGHT_EFFECT_RAINBOW_MOOD
 
-//#define USE_MATRIX_I2C
-#ifdef KEYBOARD_crkbd_rev1_legacy
-#    undef USE_I2C
-#    define USE_SERIAL
-#endif
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+#define LAYER_STATE_8BIT
+#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 125
 
-/* Select hand configuration */
 
-#define MASTER_LEFT
-// #define MASTER_RIGHT
-// #define EE_HANDS
-
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 175
+// VIAL specific reduce memory8
+#define VIAL_COMBO_ENTRIES 4
+#define VIAL_TAP_DANCE_ENTRIES 4
+#define VIAL_KEY_OVERRIDE_ENTRIES 4
 
 #ifdef RGB_MATRIX_ENABLE
-#    define RGB_MATRIX_LED_COUNT 54
+#    define RGB_MATRIX_LED_COUNT 72
 #    define RGB_MATRIX_SPLIT \
-        { 27, 27 }
+        { 36, 36 }
 #    define SPLIT_TRANSPORT_MIRROR
 
 #   define ENABLE_RGB_MATRIX_ALPHAS_MODS
@@ -85,8 +72,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #endif
-
-//#define USE_SERIAL_PD2
-
-
-#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"

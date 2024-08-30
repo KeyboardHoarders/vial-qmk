@@ -19,9 +19,9 @@
 // clang-format off
 
 #include QMK_KEYBOARD_H
-#include "oled.c"
 #include "keymap_us_international.h"
 #include "sendstring_us_international.h"
+#include "sofle_v2.c"
 
 // Default keymap. This can be changed in Vial. Use oled.c to change beavior that Vial cannot change.
 

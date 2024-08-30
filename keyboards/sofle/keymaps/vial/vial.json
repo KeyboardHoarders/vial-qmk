@@ -7,8 +7,8 @@
     "layouts": {
         "keymap": [
             {
-                "name": "KeyboardHoarders",
-                "author": "Josef Adamcik",
+                "name": "SofleKeyboard",
+                "author": "KeyboardHoarders",
                 "switchMount": "cherry"
             },
             [
