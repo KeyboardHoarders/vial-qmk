@@ -1,0 +1,9 @@
+VIA_ENABLE          = yes
+VIAL_ENABLE         = yes
+SERIAL_DRIVER = vendor
+RGBLIGHT_ENABLE     = no
+RGB_MATRIX_ENABLE   = yes # Can't have RGBLIGHT and RGB_MATRIX at the same time.
+OLED_ENABLE         = yes
+OLED_DRIVER         = ssd1306
+EXTRAKEY_ENABLE     = yes
+VIALRGB_ENABLE = yes

@@ -1,0 +1,12 @@
+# This file intentionally left blank
+ENCODER_ENABLE = yes
+ENCODER_MAP_ENABLE = yes
+RGBLIGHT_ENABLE = no
+OLED_ENABLE = yes
+OLED_DRIVER = ssd1306
+SERIAL_DRIVER = vendor
+WS2812_DRIVER = vendor
+VIA_ENABLE = yes
+VIAL_ENABLE = yes
+VIALRGB_ENABLE = yes
+RGB_MATRIX_ENABLE = yes
