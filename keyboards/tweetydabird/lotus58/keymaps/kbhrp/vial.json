@@ -1,8 +1,7 @@
 {
 	"name": "Lotus 58 Glow VIAL",
 	"author": "Markus Knutsson",
-	
-	"lighting": "qmk_rgblight",
+	"lighting": "vialrgb",
 	
 	"matrix": {
 		"rows": 10,
