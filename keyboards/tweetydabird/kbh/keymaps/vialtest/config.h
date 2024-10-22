@@ -1,40 +1,34 @@
-/* Copyright 2020 Josef Adamcik
- * Modification for VIA support and RGB underglow by Jens Bonk-Wiltfang
- * Modification for Vial support by Drew Petersen
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-// clang-format off
+// Copyright 2022 Markus Knutsson (@TweetyDaBird) 
+// SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
 
-#ifdef OLED_ENABLE
-#   define OLED_FONT_H "keyboards/splitkb/aurora/sofle_v2/glcdfont.c"
-#endif
-
-// Vial Support
-#define VIAL_KEYBOARD_UID { 0x05, 0xCD, 0x9F, 0x8A, 0xF4, 0xDF, 0xDE, 0xB2 }
-
-// Adding buffer for computer reboot.  You wont be able to get into bios with this delay.  remove if youd rather unplug/replug keyboard on reboot.
-#define SPLIT_USB_TIMEOUT 4000
-#define SPLIT_USB_TIMEOUT_POLL 10
+#define VIAL_KEYBOARD_UID {0x5F, 0xEC, 0xD8, 0x46, 0x91, 0x40, 0x1B, 0x09}
+#define SPLIT_USB_DETECT
+#define SPLIT_USB_TIMEOUT 2000
 
 
-// The four corners
-#define VIAL_UNLOCK_COMBO_ROWS { 0, 5, 3, 8 }
-#define VIAL_UNLOCK_COMBO_COLS { 0, 0, 0, 0 }
+#define VIAL_UNLOCK_COMBO_ROWS {0, 0}
+#define VIAL_UNLOCK_COMBO_COLS {0, 5}
+
+// Static glow is ALWAYS on with RGBLIGHT
+#define RGBLIGHT_EFFECT_BREATHING
+#define RGBLIGHT_EFFECT_RAINBOW_MOOD
+
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+#define LAYER_STATE_8BIT
+//#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 200mmmmmmmmmmmmmmmmmmmmmmm-6666666666666666666666666666666666666666666666666666666666666666666666666666666666
+
+// Adding delay for when pc reboots.  Cant use bios with this.
+//#define SPLIT_USB_TIMEOUT 10000
+//#define SPLIT_USB_TIMEOUT_POLL 10
+
+
+// VIAL specific reduce memory8
+#define VIAL_COMBO_ENTRIES 4
+#define VIAL_TAP_DANCE_ENTRIES 4
+#define VIAL_KEY_OVERRIDE_ENTRIES 4
 
 #ifdef RGB_MATRIX_ENABLE
 #    define RGB_MATRIX_LED_COUNT 72
