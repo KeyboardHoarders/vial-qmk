@@ -21,3 +21,4 @@
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 
+#define EE_HANDS
