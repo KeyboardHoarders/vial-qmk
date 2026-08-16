@@ -27,22 +27,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VIAL_UNLOCK_COMBO_ROWS {4, 9}
 #define VIAL_UNLOCK_COMBO_COLS {4, 4}
 
+
+#define SPLIT_POINTING_ENABLE
+#define POINTING_DEVICE_RIGHT
+
+/* Select hand configuration */
+//#define MASTER_LEFT
+// #define MASTER_RIGHT
+#define EE_HANDS
 /* Space reduction */
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
-#define VIAL_TAP_DANCE_ENTRIES 4
+#define VIAL_TAP_DANCE_ENTRIES 30
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
 #define NO_ACTION_ONESHOT
 
 /* Select hand configuration */
 
+
 #define MASTER_LEFT
 // #define MASTER_RIGHT
-// #define EE_HANDS
+//#define EE_HANDS
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
 #define USE_SERIAL_PD2
-
+//
 #define TAPPING_FORCE_HOLD
 #define TAPPING_TERM 100
 

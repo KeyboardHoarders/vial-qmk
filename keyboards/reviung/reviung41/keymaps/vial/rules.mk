@@ -2,14 +2,12 @@ VIA_ENABLE = yes
 VIAL_ENABLE = yes
 
 CONSOLE_ENABLE = no
-LTO_ENABLE = yes
+LTO_ENABLE = no
+QMK_SETTINGS = yes
+MOUSEKEY_ENABLE = yes
+COMBO_ENABLE = yes
+KEY_OVERRIDE_ENABLE = yes
 
-ifndef CONVERT_TO
-	# Disable QMK Settings when using a ProMicro to reduce size:
-	QMK_SETTINGS = no
-else
-	# Enable Mouse Keys when when not using a ProMicro as there will be space:
-	MOUSEKEY_ENABLE = yes
-endif
-LAYER_LOCK_ENABLE = no
-REPEAT_KEY_ENABLE = no
+LAYER_LOCK_ENABLE = yes
+REPEAT_KEY_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = yes

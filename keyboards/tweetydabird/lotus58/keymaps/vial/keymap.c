@@ -39,9 +39,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[3] = LAYOUT(
 		QK_BOOT, ____, ____, ____, NK_TOGG, AC_TOGG, ____, ____, ____, ____, ____, RGB_VAI, RGB_VAD, RGB_TOG,
-		QK_RBT, ____, ____, ____, ____, ____, ____, ____, ____, RGB_HUI, RGB_HUD, RGB_M_P,
-		____, ____, ____, ____, ____, ____, ____, ____, ____, RGB_SAI, RGB_SAD, RGB_M_B,
-		____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, RGB_SPI, RGB_SPD, RGB_M_R,
+		QK_RBT, ____, ____, ____, ____, ____, ____, ____, ____, RGB_HUI, RGB_HUD, RGB_MOD,
+		____, ____, ____, ____, ____, ____, ____, ____, ____, RGB_SAI, RGB_SAD, RGB_RMOD,
+		____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, RGB_SPI, RGB_SPD, KC_NO,
 		____, ____, ____, ____, ____, ____, ____, ____
     ),
 };

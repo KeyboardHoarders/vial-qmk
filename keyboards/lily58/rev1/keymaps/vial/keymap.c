@@ -191,7 +191,7 @@ char keylogs_str[21] = {};
 int keylogs_str_idx = 0;
 
 char wpm[4];
-char layer_misc[7];
+char layer_misc[16];
 
 const char code_to_name[60] = {
     ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f',

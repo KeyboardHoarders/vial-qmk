@@ -11,6 +11,9 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
+To flash
+qmk flash -kb crkbd/rev1 -km vial -e CONVERT_TO=rp2040_ce
+
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -23,8 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VIAL_UNLOCK_COMBO_COLS {0, 1}
 
 #undef DYNAMIC_KEYMAP_LAYER_COUNT
-#define DYNAMIC_KEYMAP_LAYER_COUNT 4
+#define DYNAMIC_KEYMAP_LAYER_COUNT 6
 #define TAPPING_TERM 180
+
 
 //#define USE_MATRIX_I2C
 #ifdef KEYBOARD_crkbd_rev1_legacy
@@ -32,24 +36,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define USE_SERIAL
 #endif
 
-/* Select hand configuration */
 
+
+// Trackpad support
+//#define AZOTEQ_IQS5XX_TPS43
+#define AZOTEQ_IQS5XX_WIDTH_MM  43
+#define AZOTEQ_IQS5XX_HEIGHT_MM 30
+
+#define AZOTEQ_IQS5XX_RESOLUTION_X 1400
+#define AZOTEQ_IQS5XX_RESOLUTION_Y 1400
+
+#define AZOTEQ_IQS5XX_TAP_ENABLE true
+#define AZOTEQ_IQS5XX_TWO_FINGER_TAP_ENABLE true
+#define AZOTEQ_IQS5XX_PRESS_AND_HOLD_ENABLE true
+#define AZOTEQ_IQS5XX_SWIPE_X_ENABLE false
+#define AZOTEQ_IQS5XX_SWIPE_Y_ENABLE false
+#define AZOTEQ_IQS5XX_ZOOM_ENABLE   false
+
+
+
+// Sensitivity tuning
+#define AZOTEQ_IQS5XX_TAP_TIME 110
+#define AZOTEQ_IQS5XX_TAP_DISTANCE 12
+#define AZOTEQ_IQS5XX_HOLD_TIME 320
+#define AZOTEQ_IQS5XX_TIMEOUT_MS 2
+#define AZOTEQ_IQS5XX_SCROLL_INITIAL_DISTANCE 18
+
+#define SPLIT_POINTING_ENABLE
+#define POINTING_DEVICE_RIGHT
+
+/* Select hand configuration */
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
-#define USE_SERIAL_PD2
-#ifdef RGBLIGHT_ENABLE
-#    undef RGBLIGHT_LED_COUNT
-#    define RGBLIGHT_ANIMATIONS
-#    define RGBLIGHT_LED_COUNT 54
-#    undef RGBLED_SPLIT
-#    define RGBLED_SPLIT \
-        { 27, 27 }
-#    define RGBLIGHT_LIMIT_VAL 120
-#    define RGBLIGHT_HUE_STEP  10
-#    define RGBLIGHT_SAT_STEP  17
-#    define RGBLIGHT_VAL_STEP  17
-#endif
+
+#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#define RGB_MATRIX_KEYPRESSES
+
+#define BACKLIGHT_BREATHING
+
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"

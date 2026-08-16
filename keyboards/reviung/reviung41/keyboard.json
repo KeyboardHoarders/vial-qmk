@@ -1,7 +1,7 @@
 {
     "keyboard_name": "reviung41",
-    "manufacturer": "gtips",
-    "maintainer": "gtips",
+    "manufacturer": "KeyboardHoarders",
+    "maintainer": "KeyboardHoarders",
     "usb": {
         "vid": "0x7807",
         "pid": "0xDCCB",
