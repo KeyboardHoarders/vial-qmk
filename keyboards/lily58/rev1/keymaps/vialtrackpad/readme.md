@@ -1,43 +1,5 @@
-VIA_ENABLE = yes
-VIAL_ENABLE = yes
-OLED_ENABLE = yes
-MOUSEKEY_ENABLE = yes
-EXTRAKEY_ENABLE = yes
-WPM_ENABLE = yes
-TAP_DANCE_ENABLE = yes
-COMBO_ENABLE = yes
-GRAVE_ESC_ENABLE = yes
-MAGIC_ENABLE = yes
-BOOTMAGIC_ENABLE = yes
+This is my current working keymap for all my Lily58 MX/Choc and Allium58 trackpad builds.
 
-COMMAND_ENABLE = yes
-CONSOLE_ENABLE = no
-
-QMK_SETTINGS = yes
-LTO_ENABLE = yes
-
-KEY_OVERRIDE_ENABLE = yes
-
-
-
-
-VIA_ENABLE          = yes
-VIAL_ENABLE         = yes
-
-
-RGBLIGHT_ENABLE     = no
-RGB_MATRIX_ENABLE   = no # Can't have RGBLIGHT and RGB_MATRIX at the same time.
-MOUSEKEY_ENABLE     = yes
-WPM_ENABLE = yes
-EXTRAKEY_ENABLE     = yes
-COMBO_ENABLE        = yes
-DYNAMIC_MACRO_ENABLE = yes
-
-QMK_SETTINGS        = yes
-
-CAPS_WORD_ENABLE = yes
-LAYER_LOCK_ENABLE = no
-REPEAT_KEY_ENABLE = no
-
-POINTING_DEVICE_ENABLE = yes
-POINTING_DEVICE_DRIVER = azoteq_iqs5xx
+1. Make sure to download the QMK CLI tool and this will be the command to convert it for the RP2040 MCU that is used in all my wired builds. Check command below.
+2. qmk flash -kb lily58/rev1 -km vialtrackpad -e CONVERT_TO=rp2040_ce
+3. To flash you will need to plug one half of the keyboard in at a time by itself.  > press physical reset button twice(located on inner sides) > drag and drop firmware file into RPI directory.
