@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤               ├──────────────────────────────────────────────────────┤
        KC_LCTL,    PT_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_B,  KC_N,      KC_N,    KC_M, KC_COMM,  KC_DOT, PT_SLSH, KC_RSFT,
   // ╰──────────────────────────────────────────────────────┤               ├──────────────────────────────────────────────────────╯
-       KC_LGUI,   KC_SPC,   LOWER,   KC_LALT,                                                                      KC_RALT, KC_PSCR,
+       KC_LGUI,   KC_SPC,   QK_LEAD,   KC_LALT,                                                                      KC_RALT, KC_PSCR,
                                              KC_LALT, KC_BSPC, KC_LALT,          RAISE,  KC_DEL
   //                            ╰───────────────────────────╯               ╰──────────────────╯
   ),
@@ -336,6 +336,150 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     }
     return true;
 }
+
+#ifdef LEADER_ENABLE
+// Maps a 1-based Vial/VIA macro slot to its QK_MACRO_x keycode.
+// DYNAMIC_KEYMAP_MACRO_COUNT is 32, so only slots 1-32 are valid.
+#define MACRO(n) (QK_MACRO_0 + (n) - 1)
+
+void leader_end_user(void) {
+    // ==========================================
+    // 1. Device Mode Switcher (`Leader` + i/l/w)
+    // ==========================================
+    if (leader_sequence_one_key(KC_I)) {
+        tap_code16(LCA(S(KC_1)));
+        set_unicode_input_mode(UC_MAC);
+        layer_move(6);
+    }
+    if (leader_sequence_one_key(KC_L)) {
+        tap_code16(LCA(S(KC_2)));
+        set_unicode_input_mode(UC_LINX);
+        layer_move(0);
+    }
+    if (leader_sequence_one_key(KC_W)) {
+        tap_code16(LCA(S(KC_3)));
+        set_unicode_input_mode(UC_WIN);
+        layer_move(1);
+    }
+
+    // ==========================================
+    // 2. Locks & Layers (`Leader` + L + ...)
+    // ==========================================
+    if (leader_sequence_two_keys(KC_L, KC_C)) { tap_code(KC_CAPS); }
+    if (leader_sequence_two_keys(KC_L, KC_N)) { tap_code(KC_NUM); }
+    if (leader_sequence_two_keys(KC_L, KC_S)) { tap_code(KC_SCRL); }
+
+    if (leader_sequence_two_keys(KC_L, KC_0)) { layer_move(0); }
+    if (leader_sequence_two_keys(KC_L, KC_1)) { layer_move(1); }
+    if (leader_sequence_two_keys(KC_L, KC_2)) { layer_move(2); }
+    if (leader_sequence_two_keys(KC_L, KC_3)) { layer_move(3); }
+    if (leader_sequence_two_keys(KC_L, KC_4)) { layer_move(4); }
+    if (leader_sequence_two_keys(KC_L, KC_5)) { layer_move(5); }
+    if (leader_sequence_two_keys(KC_L, KC_6)) { layer_move(6); }
+    if (leader_sequence_two_keys(KC_L, KC_7)) { layer_move(7); }
+    if (leader_sequence_two_keys(KC_L, KC_8)) { layer_move(8); }
+    if (leader_sequence_two_keys(KC_L, KC_9)) { layer_move(9); }
+
+    // ==========================================
+    // 3. Function Keys (`Leader` + F + 2 numbers)
+    // ==========================================
+    if (leader_sequence_three_keys(KC_F, KC_0, KC_1)) { tap_code(KC_F1); }
+    if (leader_sequence_three_keys(KC_F, KC_0, KC_2)) { tap_code(KC_F2); }
+    if (leader_sequence_three_keys(KC_F, KC_0, KC_3)) { tap_code(KC_F3); }
+    if (leader_sequence_three_keys(KC_F, KC_0, KC_4)) { tap_code(KC_F4); }
+    if (leader_sequence_three_keys(KC_F, KC_0, KC_5)) { tap_code(KC_F5); }
+    if (leader_sequence_three_keys(KC_F, KC_0, KC_6)) { tap_code(KC_F6); }
+    if (leader_sequence_three_keys(KC_F, KC_0, KC_7)) { tap_code(KC_F7); }
+    if (leader_sequence_three_keys(KC_F, KC_0, KC_8)) { tap_code(KC_F8); }
+    if (leader_sequence_three_keys(KC_F, KC_0, KC_9)) { tap_code(KC_F9); }
+    if (leader_sequence_three_keys(KC_F, KC_1, KC_0)) { tap_code(KC_F10); }
+    if (leader_sequence_three_keys(KC_F, KC_1, KC_1)) { tap_code(KC_F11); }
+    if (leader_sequence_three_keys(KC_F, KC_1, KC_2)) { tap_code(KC_F12); }
+    if (leader_sequence_three_keys(KC_F, KC_1, KC_3)) { tap_code(KC_F13); }
+    if (leader_sequence_three_keys(KC_F, KC_1, KC_4)) { tap_code(KC_F14); }
+    if (leader_sequence_three_keys(KC_F, KC_1, KC_5)) { tap_code(KC_F15); }
+    if (leader_sequence_three_keys(KC_F, KC_1, KC_6)) { tap_code(KC_F16); }
+    if (leader_sequence_three_keys(KC_F, KC_1, KC_7)) { tap_code(KC_F17); }
+    if (leader_sequence_three_keys(KC_F, KC_1, KC_8)) { tap_code(KC_F18); }
+    if (leader_sequence_three_keys(KC_F, KC_1, KC_9)) { tap_code(KC_F19); }
+    if (leader_sequence_three_keys(KC_F, KC_2, KC_0)) { tap_code(KC_F20); }
+    if (leader_sequence_three_keys(KC_F, KC_2, KC_1)) { tap_code(KC_F21); }
+    if (leader_sequence_three_keys(KC_F, KC_2, KC_2)) { tap_code(KC_F22); }
+    if (leader_sequence_three_keys(KC_F, KC_2, KC_3)) { tap_code(KC_F23); }
+    if (leader_sequence_three_keys(KC_F, KC_2, KC_4)) { tap_code(KC_F24); }
+
+    // ==========================================
+    // 4. Strings & Shortcuts (`Leader` + M/J/C)
+    // ==========================================
+    if (leader_sequence_three_keys(KC_M, KC_M, KC_E)) { SEND_STRING("maloxplode@"); }
+    if (leader_sequence_three_keys(KC_M, KC_M, KC_M)) { SEND_STRING("maloxplode@gmail.com"); }
+    if (leader_sequence_three_keys(KC_J, KC_J, KC_J)) { SEND_STRING("johnsonjcolton@gmail.com"); }
+    if (leader_sequence_three_keys(KC_C, KC_J, KC_E)) { SEND_STRING("colton.j.johnson@faa.gov"); }
+    if (leader_sequence_three_keys(KC_C, KC_J, KC_P)) { SEND_STRING("5459168"); }
+
+    // ==========================================
+    // 5. RGB Settings (`Leader` + R + ...)
+    // ==========================================
+    if (leader_sequence_two_keys(KC_R, KC_T)) { tap_code(RGB_TOG); }
+    if (leader_sequence_two_keys(KC_R, KC_N)) { tap_code(RGB_MOD); }
+    if (leader_sequence_two_keys(KC_R, KC_P)) { tap_code(RGB_RMOD); }
+    if (leader_sequence_three_keys(KC_R, KC_U, KC_P)) { tap_code(RGB_VAI); }
+    if (leader_sequence_three_keys(KC_R, KC_D, KC_N)) { tap_code(RGB_VAD); }
+    if (leader_sequence_four_keys(KC_R, KC_S, KC_U, KC_P)) { tap_code(RGB_SPI); }
+    if (leader_sequence_four_keys(KC_R, KC_S, KC_D, KC_N)) { tap_code(RGB_SPD); }
+
+    // ==========================================
+    // 6. Mouse Settings (`Leader` + M + ...)
+    // ==========================================
+    if (leader_sequence_three_keys(KC_M, KC_U, KC_P)) { /* Mouse Speed Up */ }
+    if (leader_sequence_two_keys(KC_M, KC_S)) { /* Snipe mode toggle */ }
+    if (leader_sequence_four_keys(KC_M, KC_S, KC_U, KC_P)) { /* Snipe Mode Speed Up */ }
+    if (leader_sequence_three_keys(KC_M, KC_D, KC_N)) { /* Mouse Speed Down */ }
+    if (leader_sequence_four_keys(KC_M, KC_S, KC_D, KC_N)) { /* Snipe Mode Speed Down */ }
+
+    // ==========================================
+    // 7. Dynamic Macros & Static Macros (`Leader` + M + A + ...)
+    // ==========================================
+    if (leader_sequence_three_keys(KC_M, KC_A, KC_R)) { tap_code(DM_REC1); }
+    if (leader_sequence_three_keys(KC_M, KC_A, KC_S)) { tap_code(DM_RSTP); }
+    if (leader_sequence_three_keys(KC_M, KC_A, KC_P)) { tap_code(DM_PLY1); }
+
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_0, KC_1)) { tap_code16(MACRO(1)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_0, KC_2)) { tap_code16(MACRO(2)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_0, KC_3)) { tap_code16(MACRO(3)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_0, KC_4)) { tap_code16(MACRO(4)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_0, KC_5)) { tap_code16(MACRO(5)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_0, KC_6)) { tap_code16(MACRO(6)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_0, KC_7)) { tap_code16(MACRO(7)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_0, KC_8)) { tap_code16(MACRO(8)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_0, KC_9)) { tap_code16(MACRO(9)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_1, KC_0)) { tap_code16(MACRO(10)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_1, KC_1)) { tap_code16(MACRO(11)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_1, KC_2)) { tap_code16(MACRO(12)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_1, KC_3)) { tap_code16(MACRO(13)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_1, KC_4)) { tap_code16(MACRO(14)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_1, KC_5)) { tap_code16(MACRO(15)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_1, KC_6)) { tap_code16(MACRO(16)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_1, KC_7)) { tap_code16(MACRO(17)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_1, KC_8)) { tap_code16(MACRO(18)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_1, KC_9)) { tap_code16(MACRO(19)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_2, KC_0)) { tap_code16(MACRO(20)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_2, KC_1)) { tap_code16(MACRO(21)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_2, KC_2)) { tap_code16(MACRO(22)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_2, KC_3)) { tap_code16(MACRO(23)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_2, KC_4)) { tap_code16(MACRO(24)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_2, KC_5)) { tap_code16(MACRO(25)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_2, KC_6)) { tap_code16(MACRO(26)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_2, KC_7)) { tap_code16(MACRO(27)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_2, KC_8)) { tap_code16(MACRO(28)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_2, KC_9)) { tap_code16(MACRO(29)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_3, KC_0)) { tap_code16(MACRO(30)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_3, KC_1)) { tap_code16(MACRO(31)); }
+    if (leader_sequence_four_keys(KC_M, KC_A, KC_3, KC_2)) { tap_code16(MACRO(32)); }
+    // Note: DYNAMIC_KEYMAP_MACRO_COUNT is 32, so slots 33-35 from the
+    // source sequence have no corresponding macro keycode and are omitted.
+}
+#endif // LEADER_ENABLE
 
 
 /* oled stuff :) */

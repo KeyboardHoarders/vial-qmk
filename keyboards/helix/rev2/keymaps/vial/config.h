@@ -24,6 +24,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VIAL_UNLOCK_COMBO_ROWS {4, 9}
 #define VIAL_UNLOCK_COMBO_COLS {4, 4}
 
+// Running on an rp2040_ce converter -- flash is plentiful, so give the
+// wear-leveling EEPROM emulation a lot more room than the RP2040 default
+// (8192/4096 bytes backing/logical) to comfortably fit 10 full layers plus
+// maxed-out tap dance / combos / key overrides / macros below.
+#define WEAR_LEVELING_BACKING_SIZE (32 * 1024)
+
+// 10 fully addressable layers (see the keymap's `enum layer_number`).
+#define DYNAMIC_KEYMAP_LAYER_COUNT 10
+
+// 32 is the hard ceiling QMK's keycode space allows (QK_MACRO_0..QK_MACRO_31),
+// so this maxes out Vial's Macro tab.
+#define DYNAMIC_KEYMAP_MACRO_COUNT 32
+
+// Vial scales these automatically from the EEPROM size (32 is its own hard
+// cap), but they're spelled out here so the "maxed out" intent is explicit.
+#define VIAL_TAP_DANCE_ENTRIES 32
+#define VIAL_COMBO_ENTRIES 32
+#define VIAL_KEY_OVERRIDE_ENTRIES 32
+#define VIAL_ALT_REPEAT_KEY_ENTRIES 32
+
 #if defined(LED_ANIMATIONS)
    #define RGBLIGHT_EFFECT_BREATHING
 

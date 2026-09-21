@@ -4,6 +4,21 @@
 
 #define VIAL_KEYBOARD_UID {0xBA, 0x38, 0x22, 0x3F, 0x8C, 0x42, 0x0F, 0x44}
 
+#define DYNAMIC_KEYMAP_LAYER_COUNT 8
+
+// Max out Vial dynamic combos, tap dance, and macros.
+// 32 is the top tier Vial grants once EEPROM > 4000 bytes (this board's
+// RP2040 wear-leveled EEPROM is 4096 bytes), so combos/tap dance are
+// already at their ceiling by default - defined explicitly here so the
+// intent is documented and future EEPROM changes don't silently shrink them.
+#define VIAL_TAP_DANCE_ENTRIES 32
+#define VIAL_COMBO_ENTRIES 32
+
+// 128 is the hard ceiling: macro keycodes occupy QK_MACRO..QK_MACRO_MAX
+// (0x7700-0x777F), a 128-entry range, so higher counts would have no
+// keycode able to trigger them.
+#define DYNAMIC_KEYMAP_MACRO_COUNT 128
+
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #define RGB_MATRIX_KEYPRESSES
 

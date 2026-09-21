@@ -16,6 +16,9 @@
  */
 #pragma once
 
+/* Leader key configuration. */
+#define LEADER_TIMEOUT 1000
+
 #ifdef VIA_ENABLE
 /* VIA configuration. */
 #define DYNAMIC_KEYMAP_LAYER_COUNT 10
