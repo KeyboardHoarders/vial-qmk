@@ -2,6 +2,21 @@
 #include "keymap_us_international.h"
 #include "sendstring_us_international.h"
 
+// Vial only resets keymaps/macros when a new build is flashed, leaving the
+// previous firmware's RGB settings in EEPROM. Detect a new build here and
+// apply the RGB_MATRIX_DEFAULT_* values from config.h after init.
+static bool new_firmware_flashed = false;
+
+void via_init_kb(void) {
+    new_firmware_flashed = !via_eeprom_is_valid();
+}
+
+void keyboard_post_init_user(void) {
+    if (new_firmware_flashed) {
+        eeconfig_update_rgb_matrix_default();
+    }
+}
+
 // Default keymap. This can be changed in Vial. Use oled.c to change beavior that Vial cannot change.
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
