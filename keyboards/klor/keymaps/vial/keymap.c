@@ -157,139 +157,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef OLED_ENABLE
 
-char layer_state_str[24];
-char o_text[24] = "";
-
 // ┌───────────────────────────────────────────────────────────┐
-// │ o l e d   g r a p h i c s                                 │
+// │ m a s t e r   s t a t u s                                 │
 // └───────────────────────────────────────────────────────────┘
+// 128x64 = 21 cols x 8 rows. Active items are drawn inverted.
 
-void render_os_lock_status(void) {
-    static const char PROGMEM sep_v[] = {0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0};
-    static const char PROGMEM sep_h1[] = {0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0};
-    static const char PROGMEM sep_h2[] = {0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0};
-    static const char PROGMEM face_1[] = {0x80, 0x81, 0x82, 0x83, 0x84, 0xE1, 0};  
-    static const char PROGMEM face_2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xE1, 0}; 
-    static const char PROGMEM os_m_1[] = {0x95, 0x96, 0};
-    static const char PROGMEM os_m_2[] = {0xB5, 0xB6, 0};
-    static const char PROGMEM os_w_1[] = {0x97, 0x98, 0};
-    static const char PROGMEM os_w_2[] = {0xB7, 0xB8, 0};
-    static const char PROGMEM s_lock[] = {0x8F, 0x90, 0};
-    static const char PROGMEM n_lock[] = {0x91, 0x92, 0};
-    static const char PROGMEM c_lock[] = {0x93, 0x94, 0};
-    static const char PROGMEM b_lock[] = {0xE1, 0xE1, 0};
-    #ifdef AUDIO_ENABLE  
-      static const char PROGMEM aud_en[] = {0xAF, 0xB0, 0};
-      static const char PROGMEM aud_di[] = {0xCF, 0xD0, 0};
-    #endif
-    #ifdef HAPTIC_ENABLE
-      static const char PROGMEM hap_en[] = {0xB1, 0xB2, 0};
-    #endif
+static void render_layer(void) {
+    uint8_t layer = get_highest_layer(layer_state | default_layer_state);
 
-// os mode status ────────────────────────────────────────┐
+    oled_set_cursor(1, 0);
+    oled_write_P(PSTR("LAYER"), false);
 
-    oled_write_ln_P(sep_v, false);
-
-    if (keymap_config.swap_lctl_lgui) {
-        oled_write_P(os_m_1, false); // ──── MAC
-    } else {
-        oled_write_P(os_w_1, false); // ──── WIN
+    oled_set_cursor(3, 1);
+    for (uint8_t i = 0; i < DYNAMIC_KEYMAP_LAYER_COUNT; i++) {
+        oled_write_char('0' + i, layer == i);
+        oled_write_char(' ', false);
     }
-
-    oled_write_P(sep_h1, false);
-    oled_write_P(face_1, false);
-
-    if (keymap_config.swap_lctl_lgui) {
-        oled_write_P(os_m_2, false); // ──── MAC
-    } else {
-        oled_write_P(os_w_2, false); // ──── WIN
-    }
-
-    oled_write_P(sep_h1, false);
-    oled_write_P(face_2, false);
-    oled_write_ln_P(sep_v, false);
-
-    
-// lock key layer status ─────────────────────────────────┐
-
-    led_t led_usb_state = host_keyboard_led_state();
-
-    if (led_usb_state.num_lock) {
-        oled_write_P(n_lock, false); // ──── NUMLOCK
-    } else {
-        oled_write_P(b_lock, false);
-    }
-    if (led_usb_state.caps_lock) {
-        oled_write_P(c_lock, false); // ─── CAPSLOCK
-    } else {
-        oled_write_P(b_lock, false);
-    }
-    if (led_usb_state.scroll_lock) { // ─ SCROLLLOCK
-        oled_write_P(s_lock, false);
-    } else {
-        oled_write_P(b_lock, false);
-    }
-
-// hardware feature status ──────────────────────────────┐
-
-    oled_write_P(sep_h2, false);
-
-    #ifndef AUDIO_ENABLE 
-        oled_write_P(b_lock, false);
-    #endif
-    #ifndef HAPTIC_ENABLE 
-        oled_write_P(b_lock, false);
-    #endif
-
-    #ifdef AUDIO_ENABLE // ────────────────── AUDIO
-        if (is_audio_on()) { 
-          oled_write_P(aud_en, false); 
-        } else {
-          oled_write_P(aud_di, false);
-        }
-    #endif // AUDIO ENABLE
-
-     #ifdef HAPTIC_ENABLE // ─────────────── HAPTIC
-        oled_write_P(hap_en, false); 
-     #endif // HAPTIC ENABLE
 }
 
+static void render_mod(uint8_t col, uint8_t row, const char *label, bool active) {
+    oled_set_cursor(col, row);
+    oled_write_P(label, active);
+}
 
-// layer status ──────────────────────────────────────────┐
+static void render_mods(void) {
+    uint8_t mods = get_mods();
 
-int layerstate = 0;
+    oled_set_cursor(6, 3);
+    oled_write_P(PSTR("MODIFIERS"), false);
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-      switch (get_highest_layer(state)) {
-            case 0:
-                strcpy ( layer_state_str, "BASE QWERTY");
-                break;
-            case 1:
-                strcpy ( layer_state_str, "BASE COLEMAK");
-                break;
-            case 2:
-                strcpy ( layer_state_str, "LOWER");
-                break;
-            case 3:
-                strcpy ( layer_state_str, "RAISE");
-                break;
-            case 4:
-                strcpy ( layer_state_str, "ADJUST");
-                break;
-            case 5:
-                strcpy ( layer_state_str, "LAYER 5");
-                break;
-            case 6:
-                strcpy ( layer_state_str, "LAYER 6");
-                break;
-            case 7:
-                strcpy ( layer_state_str, "LAYER 7");
-                break;
-            default:
-                strcpy ( layer_state_str, "XXXXXX");
-      }
-
-  return state;
+    render_mod(2,  4, PSTR(" SHIFT "), mods & MOD_MASK_SHIFT);
+    render_mod(12, 4, PSTR(" CTRL  "), mods & MOD_MASK_CTRL);
+    render_mod(2,  6, PSTR(" ALT   "), mods & MOD_MASK_ALT);
+    render_mod(12, 6, PSTR(" GUI   "), mods & MOD_MASK_GUI);
 }
 
 // ┌───────────────────────────────────────────────────────────┐
@@ -302,9 +202,8 @@ bool oled_task_kb(void) {
     }
     if (is_keyboard_master()) {  // ────────────────────────── PRIMARY SIDE
 
-        // layer status ──────────────────────────────────────────────────┐
-        oled_write_ln(o_text, false);
-        render_os_lock_status();
+        render_layer();
+        render_mods();
 
     } else {  // ─────────────────────────────────────────── SECONDARY SIDE
 
