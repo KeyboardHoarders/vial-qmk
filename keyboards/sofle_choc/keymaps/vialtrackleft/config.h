@@ -68,7 +68,10 @@
 #define AZOTEQ_IQS5XX_TAP_TIME 110
 #define AZOTEQ_IQS5XX_TAP_DISTANCE 12
 #define AZOTEQ_IQS5XX_HOLD_TIME 320
-#define AZOTEQ_IQS5XX_TIMEOUT_MS 6
+// Must be longer than the IQS5xx report cycle (10ms): the trackpad holds the
+// I2C clock low until its next cycle, so shorter timeouts abort the transfer
+// mid-read and leave the bus in a bad state.
+#define AZOTEQ_IQS5XX_TIMEOUT_MS 20
 #define AZOTEQ_IQS5XX_SCROLL_INITIAL_DISTANCE 18
 
 #define SPLIT_POINTING_ENABLE
@@ -87,3 +90,17 @@
 #define RGB_MATRIX_KEYPRESSES
 
 #define BACKLIGHT_BREATHING
+
+// ---------------------------------------------------------------------
+// Phantom keypress mitigation (same as vialtracksafe). The phantom keys
+// seen so far (O, P, 9) are all on rows C6/D7, which sit next to the I2C
+// SDA/SCL pins on the RP2040-CE header, so I2C edges can couple into them.
+// ---------------------------------------------------------------------
+#define DEBOUNCE 10
+
+// Run the shared OLED + trackpad I2C bus at 100kHz instead of 400kHz.
+#define I2C1_CLOCK_SPEED 100000
+
+// Drop PAL_RP_PAD_SLEWFAST from the I2C pins to soften SDA/SCL edges.
+#define I2C1_SCL_PAL_MODE (PAL_MODE_ALTERNATE_I2C | PAL_RP_PAD_PUE | PAL_RP_PAD_DRIVE4)
+#define I2C1_SDA_PAL_MODE (PAL_MODE_ALTERNATE_I2C | PAL_RP_PAD_PUE | PAL_RP_PAD_DRIVE4)

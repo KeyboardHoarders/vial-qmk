@@ -19,3 +19,6 @@ DYNAMIC_MACRO_ENABLE = yes
 
 POINTING_DEVICE_ENABLE = yes
 POINTING_DEVICE_DRIVER = azoteq_iqs5xx
+
+# Per-key defer debounce, see config.h
+DEBOUNCE_TYPE = sym_defer_pk

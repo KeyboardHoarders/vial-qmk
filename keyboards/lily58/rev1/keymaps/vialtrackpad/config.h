@@ -60,7 +60,7 @@ qmk flash -kb lily58/rev1 -km vialtrackpad -e CONVERT_TO=rp2040_ce */
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 //#define EE_HANDS
-#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+//#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
 #define USE_SERIAL_PD2
 //
