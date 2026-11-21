@@ -65,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define AZOTEQ_IQS5XX_TAP_TIME 110
 #define AZOTEQ_IQS5XX_TAP_DISTANCE 12
 #define AZOTEQ_IQS5XX_HOLD_TIME 320
-#define AZOTEQ_IQS5XX_TIMEOUT_MS 4
+#define AZOTEQ_IQS5XX_TIMEOUT_MS 20
 #define AZOTEQ_IQS5XX_SCROLL_INITIAL_DISTANCE 18
 
 #define SPLIT_POINTING_ENABLE
