@@ -5,10 +5,7 @@
 #define ____ KC_TRNS
 
 #ifdef AUTO_SHIFT_ENABLE
-
-void keyboard_post_init_user(void) {
-	autoshift_disable();
-}
+#    include "qmk_settings.h"
 #endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -89,7 +86,7 @@ static void print_status_narrow(void) {
 	
 #ifdef AUTO_SHIFT_ENABLE
 
-	bool autoshift = get_autoshift_state();
+	bool autoshift = QS_auto_shift_enable && get_autoshift_state();
 	oled_advance_page(true);
 	oled_write_P(PSTR("Auto-Shift"), autoshift);
 	oled_advance_page(true);
